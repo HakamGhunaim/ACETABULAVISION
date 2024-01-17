@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AcetabulaVision</title>
+    <link rel="icon" href="{% static 'elements/avlogo-0012.png' %}" type="image-x-icon">
+    <!--    <link rel="stylesheet" href="../../../../LOGIN%20PAGE/NEW/style.css">-->
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #304F59;
+            /* Set the background color to #304F59 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            width: 98.5%;
+            border-bottom: 1px solid black;
+            margin-top: -8px;
+            margin-bottom: 10px;
+            height: 41px;
+            position: relative;
+        }
+
+        #brand {
+            width: 125px;
+            height: auto;
+        }
+
+        #psut,
+        #juh {
+            width: 40px;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #psut {
+            right: 10px;
+        }
+
+        #juh {
+            right: 80px;
+            /* Adjust the right position as needed */
+        }
+
+        .separator {
+            width: 1px;
+            background-color: black;
+            height: 40px;
+            margin: 0 54px;
+        }
+
+        .background-container {
+            background-color: #D9D9D9;
+            padding: 60px;
+            border: 1px solid #ccc;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 340px;
+            background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
+            url("{% static 'elements/bannerback1.png' %}");
+            background-size: cover;
+            background-position: center top;
+            height: 155px;
+            margin-top: -1px;
+            background-image: url("{% static 'elements/bannerback1.png' %}");
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            /* Background color for the form container with transparency */
+            padding: 20px;
+            border: 1px solid #B8C7D2;
+            border-radius: 35px;
+            text-align: center;
+            background-color: white;
+            /* Center-align the content */
+        }
+
+        .form-logo {
+            margin: 0 auto 20px;
+            /* Center the logo horizontally and add space below it */
+            max-width: 100%;
+            /* Ensure the logo doesn't exceed the container width */
+        }
+
+        .form-group {
+            margin-bottom: 5px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: bold;
+            text-align: left;
+            /* Align text to the left */
+            margin-bottom: 5px;
+            /* Increase the distance between labels */
+            color: #2B6D81;
+            /* Set label color to #2B6D81 */
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #B8C7D2;
+            /* Set the border color to #B8C7D2 */
+            border-radius: 3px;
+        }
+
+        .form-radio-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-radio-label {
+            margin-right: 10px;
+            color: #2B6D81;
+        }
+
+        .note {
+            font-size: 14px;
+            margin-top: 5px;
+            color: #B8C7D2;
+            font-weight: bold;
+        }
+
+        .form-submit {
+            background-color: #114569;
+            /* Set submit button background color to #114569 */
+            color: white;
+            /* Set text color to white */
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            width: 225px;
+        }
+
+        .emran {
+            background-color: #D9D9D9;
+            height: 650px;
+            border-radius: 32px;
+        }
+
+        #rindex {
+            width: 3.5em;
+            border: 1px solid #B8C7D2;
+            border-radius: 3px;
+        }
+
+        #lindex {
+            width: 3.5em;
+            border: 1px solid #B8C7D2;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="navbar">
+    <img src="{% static 'elements/avlogo=-07.png' %}" alt="BRAND" id="brand">
+    <img src="{% static 'elements/PSUT%20LOGO.jpg' %}" alt="PSUT" id="psut">
+    <div class="separator"></div>
+    <img src="{% static 'elements/juh.png' %}" alt="JUH" id="juh">
+</div>
+<div class="emran">
+    <div class="background-container">
+        <div class="form-container">
+            <div class="form-logo">
+                <img src="{% static 'elements/avlogo-001.png' %}" alt="Your Logo" style="width: 125px; height: auto;">
+            </div>
+
+            <form method="post" enctype="multipart/form-data" id="upload-form" action="{% url 'process_form' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="drid" class="form-label">Doctor Id</label>
+                    <input type="text" name="drid" id="drid" class="form-input" required><br>
+                    <label for="id" class="form-label">Patient Id</label>
+                    <input type="text" name="id" id="id" class="form-input" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="form-label">Gender</label>
+                    <div class="form-radio-group">
+                        <div>
+                            <input type="radio" id="male" name="gender" class="form-radio-input" value="male" checked>
+                            <label for="male" class="form-radio-label">Male</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="female" name="gender" class="form-radio-input" value="female">
+                            <label for="female" class="form-radio-label">Female</label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="margin-bottom: 30px;">
+                    <!-- Increase the margin between Gender and Date of birth -->
+                    <label for="dob" class="form-label">Date of birth</label>
+                    <input type="date" id="dob" name="date" class="form-input" required>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 10px;">
+                    <!-- Increase the margin between Gender and Date of birth -->
+                    <label for="rindex" style="color: #2B6D81; font-weight: bold;">Right Index</label>
+                    <input type="number" name="rindex" id="rindex">
+                    <label for="lindex" style="color: #2B6D81; font-weight: bold;">Left Index</label>
+                    <input type="number" name="lindex" id="lindex">
+                </div>
+
+                <div class="form-group">
+                    <label for="id_image" class="form-label">Upload X-ray</label>
+                    <input type="file" id="id_image" name="image" class="form-input" required>
+                    <div class="note">Supported file formats: JPEG, PNG</div>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" class="form-submit">
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+</body>
+<!-- Add this script in the <head> section of your HTML -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const maleRadio = document.getElementById('male');
+        const femaleRadio = document.getElementById('female');
+
+        maleRadio.addEventListener('change', function () {
+            femaleRadio.checked = !maleRadio.checked;
+        });
+
+        femaleRadio.addEventListener('change', function () {
+            maleRadio.checked = !femaleRadio.checked;
+        });
+    });
+</script>
+</html>
